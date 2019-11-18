@@ -15,7 +15,7 @@ namespace WQMS.RTNotifiers
         public string CheckAutmatedStationsAndNotify()
         {
             //double hoursToCheckBack = Double.Parse(ConfigurationManager.AppSettings["HoursToCheckBack"]);
-            double hoursToCheckBack = -12;
+            double hoursToCheckBack = -24;
 
             //SET START DATE AND END DATE TO CURRENT DATE TIME IN UTC. 
             //Stored procedure sp_getNotifyLimitsAndValuesByDateRange will convert to appropriate time zone for each station.
@@ -181,7 +181,7 @@ namespace WQMS.RTNotifiers
                 }
                 //strMessage += "shawn.donohue@canada.ca"; //also add my name here to get tagged on. Shawn Donohue 20 mar 2018
                 strMessage += "David.Halliwell@canada.ca"; //Shawn Donohue 7 mar 2019 removed his name above and added David Halliwell
-                SendEmail(strMessage, dtContacts);
+                //SendEmail(strMessage, dtContacts);
 
             }
             else
@@ -189,14 +189,14 @@ namespace WQMS.RTNotifiers
                 //if no problems with stations, send email to confirm?
                 string theMessage;
                 theMessage = "No problems found at stations";
-                SendTestEmail(theMessage);
+                //SendTestEmail(theMessage);
                 return "";
             }
 
 
             //return message for testing purposes only. for full implementation just return void and send email
-            // return strMessage;
-            return "";
+            return strMessage;
+            //return "";
 
         }
 
@@ -284,7 +284,9 @@ namespace WQMS.RTNotifiers
             //string conStr = System.Configuration.ConfigurationManager.ConnectionStrings["RTPROD"].ToString();
             //string conStr = "Data Source=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Initial Catalog=ecPacificRealTimeWaterQuality;Integrated Security=True";
 
-            string conStr = "Server=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Database=ecPacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
+            //November 14, 2019. SSC has migrated the database. New server, new database name
+            //string conStr = "Server=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Database=ecPacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
+            string conStr = "Server=NATSQLAPPS2\\INS2;Database=PacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
 
             using (SqlConnection conn = new SqlConnection(conStr))
             {
@@ -314,9 +316,11 @@ namespace WQMS.RTNotifiers
 
         protected DataTable getNotifyStations()
         {
+            //November 14, 2019. SSC has migrated servers. New server name, new database.
             //string conStr = "Data Source=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Initial Catalog=ecPacificRealTimeWaterQuality;Integrated Security=True";
             //string conStr = System.Configuration.ConfigurationManager.ConnectionStrings["RTPROD"].ToString();
-            string conStr = "Server=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Database=ecPacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
+            //string conStr = "Server=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Database=ecPacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
+            string conStr = "Server=NATSQLAPPS2\\INS2;Database=PacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
 
             using (SqlConnection conn = new SqlConnection(conStr))
             {
@@ -348,10 +352,12 @@ namespace WQMS.RTNotifiers
             stationNumbers = stationNumbers.Substring(0, stationNumbers.Length - 1);
 
 
-            //SET UP CONNENCTION
+            //SET UP CONNECTION
+            //November 14, 2019. SSC has migrated servers. New server name, new database.
             //string conStr = System.Configuration.ConfigurationManager.ConnectionStrings["RTPROD"].ToString();
             //string conStr = "Data Source=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Initial Catalog=ecPacificRealTimeWaterQuality;Integrated Security=True";
-            string conStr = "Server=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Database=ecPacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
+            //string conStr = "Server=NATSQLAPPS2NCR.ncr.int.ec.gc.ca\\ins2;Database=ecPacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
+            string conStr = "Server=NATSQLAPPS2\\INS2;Database=PacificRealTimeWaterQuality;User Id=lndb;Password=bdn1RTWQ;";
 
             using (SqlConnection conn = new SqlConnection(conStr))
             {
