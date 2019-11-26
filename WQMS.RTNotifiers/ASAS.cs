@@ -181,7 +181,7 @@ namespace WQMS.RTNotifiers
                 }
                 //strMessage += "shawn.donohue@canada.ca"; //also add my name here to get tagged on. Shawn Donohue 20 mar 2018
                 strMessage += "David.Halliwell@canada.ca"; //Shawn Donohue 7 mar 2019 removed his name above and added David Halliwell
-                //SendEmail(strMessage, dtContacts);
+                SendEmail(strMessage, dtContacts);
 
             }
             else
