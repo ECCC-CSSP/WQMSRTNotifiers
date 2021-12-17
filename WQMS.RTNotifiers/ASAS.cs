@@ -195,7 +195,7 @@ namespace WQMS.RTNotifiers
                     }
                 }
                 //strMessage += "shawn.donohue@canada.ca"; //also add my name here to get tagged on. Shawn Donohue 20 mar 2018
-                strMessageBody += "David.Halliwell@canada.ca"; //Shawn Donohue 7 mar 2019 removed his name above and added David Halliwell
+                strMessageBody += "David.Halliwell@ec.gc.ca"; //Shawn Donohue 7 mar 2019 removed his name above and added David Halliwell
 
                 strMessage += strMessageHeader + strMessageBody;
                 SendEmail(strMessage, dtContacts);
@@ -204,8 +204,7 @@ namespace WQMS.RTNotifiers
             else
             {
                 //if no problems with stations, send email to confirm?
-                string theMessage;
-                theMessage = "No problems found at stations";
+                //string theMessage = "No problems found at stations";
                 //SendTestEmail(theMessage);
                 return "";
             }
@@ -221,12 +220,13 @@ namespace WQMS.RTNotifiers
         {
             //string EmailAddresses = "david.benoit@canada.ca";
             //string EmailAddresses = "shawn.donohue@canada.ca";//changed 16 Nov 2017 as directed by D. Benoit email to rx alerts
-            string EmailAddresses = "David.Halliwell@canada.ca";//chnaged 7 Mar 2019 to add David Halliwell to recieve email alerts
+            string EmailAddresses = "David.Halliwell@ec.gc.ca";//chnaged 7 Mar 2019 to add David Halliwell to recieve email alerts
+            //string fromAddress = "Charles.LeBlanc@ec.gc.ca"; //changed Dec 9, 2021
 
             MailMessage mail = new MailMessage();
 
             mail.To.Add(EmailAddresses);
-            mail.From = new MailAddress(EmailAddresses);
+            mail.From = new MailAddress("pccsm-cssp@ec.gc.ca");
             mail.IsBodyHtml = true;
             SmtpClient myClient = new System.Net.Mail.SmtpClient();
             myClient.Host = "atlantic-exgate.Atlantic.int.ec.gc.ca";
@@ -246,14 +246,15 @@ namespace WQMS.RTNotifiers
             //string FromEmailAddresses = "charles.leblanc2@canada.ca";
             //string frEmailAddress = "david.benoit@canada.ca";
             //string frEmailAddress = "shawn.donohue@canada.ca";
-            string frEmailAddress = "David.Halliwell@canada.ca";//added 7 Mar 2019
+            //string frEmailAddress = "David.Halliwell@ec.gc.ca";//added 7 Mar 2019
+            //string frEmailAddress = "Charles.LeBlanc@ec.gc.ca"; //added Dec 9 2021
 
             MailMessage mail = new MailMessage();
 
             //first hardcode Dave Benoits Email address in the case that the list of conatcts is empty. 
             // mail.To.Add("david.benoit@canada.ca");
             //mail.To.Add("shawn.donohue@canada.ca");//removed 7 mar 2019
-            mail.To.Add("David.Halliwell@canada.ca");//added 7 Mar 2019
+            mail.To.Add("David.Halliwell@ec.gc.ca");//added 7 Mar 2019
 
             string emailAddress;
             foreach (DataRow row in dtContacts.Rows)
@@ -272,17 +273,17 @@ namespace WQMS.RTNotifiers
             //mail.To.Add("Charles.LeBlanc2@canada.ca");
             //mail.CC.Add("christine.garron@canada.ca");
 
-            mail.From = new MailAddress(frEmailAddress);
+            mail.From = new MailAddress("pccsm-cssp@ec.gc.ca");
             mail.IsBodyHtml = true;
 
             SmtpClient myClient = new System.Net.Mail.SmtpClient();
             //myClient.Host = "atlantic-exgate.Atlantic.int.ec.gc.ca";
 
 
-            myClient.Host = "smtp.email-courriel.canada.ca";
+            myClient.Host = "mail.ec.gc.ca";
             myClient.Port = 587;
             //myClient.Credentials = new System.Net.NetworkCredential("yourusername", "yourpassword");
-            myClient.Credentials = new System.Net.NetworkCredential("ec.pccsm-cssp.ec@canada.ca", "H^9h6g@Gy$N57k=Dr@J7=F2y6p6b!T");
+            myClient.Credentials = new System.Net.NetworkCredential("pccsm-cssp@ec.gc.ca", "Gt=UJZ3g]8_P86Q]::p0F(%=$_OL_Y");
             myClient.EnableSsl = true;
 
             //string subject = "FWQMS Automated Station Alert System";
@@ -315,8 +316,8 @@ namespace WQMS.RTNotifiers
                 cmd.Parameters.Add("@endDate", SqlDbType.DateTime).Value = dtEndTime;
 
                 SqlDataReader dr = cmd.ExecuteReader();
-                int count;
-                count = 0;
+                //int count;
+                //count = 0;
 
                 // load to datatable to get field count: 
 
