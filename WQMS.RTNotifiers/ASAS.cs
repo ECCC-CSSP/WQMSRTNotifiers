@@ -195,7 +195,7 @@ namespace WQMS.RTNotifiers
                     }
                 }
                 //strMessage += "shawn.donohue@canada.ca"; //also add my name here to get tagged on. Shawn Donohue 20 mar 2018
-                strMessageBody += "David.Halliwell@ec.gc.ca"; //Shawn Donohue 7 mar 2019 removed his name above and added David Halliwell
+                strMessageBody += "Daniel.Bastarache@ec.gc.ca"; //Shawn Donohue 7 mar 2019 removed his name above and added David Halliwell
 
                 strMessage += strMessageHeader + strMessageBody;
                 SendEmail(strMessage, dtContacts);
@@ -220,7 +220,7 @@ namespace WQMS.RTNotifiers
         {
             //string EmailAddresses = "david.benoit@canada.ca";
             //string EmailAddresses = "shawn.donohue@canada.ca";//changed 16 Nov 2017 as directed by D. Benoit email to rx alerts
-            string EmailAddresses = "David.Halliwell@ec.gc.ca";//chnaged 7 Mar 2019 to add David Halliwell to recieve email alerts
+            string EmailAddresses = "Daniel.Bastarache@ec.gc.ca";//chnaged 7 Mar 2019 to add David Halliwell to recieve email alerts
             //string fromAddress = "Charles.LeBlanc@ec.gc.ca"; //changed Dec 9, 2021
 
             MailMessage mail = new MailMessage();
@@ -243,10 +243,10 @@ namespace WQMS.RTNotifiers
 
         public void SendEmail(string message, DataTable dtContacts)
         {
-            //string FromEmailAddresses = "charles.leblanc2@canada.ca";
+            //string FromEmailAddresses = "charles.leblanc@ec.gc.ca";
             //string frEmailAddress = "david.benoit@canada.ca";
             //string frEmailAddress = "shawn.donohue@canada.ca";
-            //string frEmailAddress = "David.Halliwell@ec.gc.ca";//added 7 Mar 2019
+            //string frEmailAddress = "Daniel.Bastarache@ec.gc.ca";//added 7 Mar 2019
             //string frEmailAddress = "Charles.LeBlanc@ec.gc.ca"; //added Dec 9 2021
 
             MailMessage mail = new MailMessage();
@@ -254,7 +254,7 @@ namespace WQMS.RTNotifiers
             //first hardcode Dave Benoits Email address in the case that the list of conatcts is empty. 
             // mail.To.Add("david.benoit@canada.ca");
             //mail.To.Add("shawn.donohue@canada.ca");//removed 7 mar 2019
-            mail.To.Add("David.Halliwell@ec.gc.ca");//added 7 Mar 2019
+            mail.To.Add("Daniel.Bastarache@ec.gc.ca");//added 7 Mar 2019
 
             string emailAddress;
             foreach (DataRow row in dtContacts.Rows)
@@ -270,7 +270,7 @@ namespace WQMS.RTNotifiers
                 }
             }
 
-            //mail.To.Add("Charles.LeBlanc2@canada.ca");
+            //mail.To.Add("Charles.LeBlanc@ec.gc.ca");
             //mail.CC.Add("christine.garron@canada.ca");
 
             mail.From = new MailAddress("pccsm-cssp@ec.gc.ca");
